@@ -17,6 +17,8 @@ const typeDefs = `
     id: ID!
     imdb_id: String
     title: String
+    rating: Int
+    release_date: String
     budget: Int
     production_companies: [ProductionCompany]
   }
@@ -56,6 +58,7 @@ const resolvers = {
       const guest_session = await getSessionId()
       const results = await http
         .get(`https://api.themoviedb.org/3/guest_session/${guest_session}/rated/movies?api_key=${MOVIE_DB_API_KEY}&language=en-US`)
+      console.log(results.results)
       return results.results
     },
   },
